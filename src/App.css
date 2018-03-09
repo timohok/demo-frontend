@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: none;
+}
+
+li {
+  display: inline-block;
+}
+
+a {
+  cursor: pointer;
+}
