@@ -2,15 +2,13 @@
   text-align: center;
 }
 
-ul {
-  list-style-type: none;
-  padding: none;
-}
-
-li {
-  display: inline-block;
-}
-
 a {
   cursor: pointer;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
 }
