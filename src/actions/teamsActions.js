@@ -1,3 +1,5 @@
+// @flow
+
 export const FETCH_TEAMS_BEGIN   = 'FETCH_TEAMS_BEGIN';
 export const FETCH_TEAMS_SUCCESS = 'FETCH_TEAMS_SUCCESS';
 export const FETCH_TEAMS_FAILURE = 'FETCH_TEAMS_FAILURE';
@@ -6,18 +8,18 @@ export const fetchTeamsBegin = () => ({
     type: FETCH_TEAMS_BEGIN
 });
 
-export const fetchTeamsSuccess = teams => ({
+export const fetchTeamsSuccess = (teams: Teams) => ({
     type: FETCH_TEAMS_SUCCESS,
     payload: { teams }
 });
 
-export const fetchTeamsFailure = error => ({
+export const fetchTeamsFailure = (error: Object) => ({
     type: FETCH_TEAMS_FAILURE,
     payload: { error }
 });
 
 export function fetchTeams() {
-    return dispatch => {
+    return (dispatch: Function) => {
         dispatch(fetchTeamsBegin());
         return fetch("/demo/api/teams?page[limit]=10")
             .then(handleErrors)

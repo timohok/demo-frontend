@@ -1,3 +1,4 @@
+// @flow
 export const FETCH_HEROES_BEGIN   = 'FETCH_HEROES_BEGIN';
 export const FETCH_HEROES_SUCCESS = 'FETCH_HEROES_SUCCESS';
 export const FETCH_HEROES_FAILURE = 'FETCH_HEROES_FAILURE';
@@ -6,18 +7,18 @@ export const fetchHeroesBegin = () => ({
     type: FETCH_HEROES_BEGIN
 });
 
-export const fetchHeroesSuccess = heroes => ({
+export const fetchHeroesSuccess = (heroes: Heroes) => ({
     type: FETCH_HEROES_SUCCESS,
     payload: { heroes }
 });
 
-export const fetchHeroesFailure = error => ({
+export const fetchHeroesFailure = (error: Object) => ({
     type: FETCH_HEROES_FAILURE,
     payload: { error }
 });
 
-export function fetchHeroes(playerId) {
-    return dispatch => {
+export function fetchHeroes(playerId: string) {
+    return (dispatch: Function) => {
         dispatch(fetchHeroesBegin());
         return fetch(`/demo/api/players/${playerId}/heroes`)
             .then(handleErrors)
@@ -30,7 +31,7 @@ export function fetchHeroes(playerId) {
     };
 }
 
-function handleErrors(response) {
+function handleErrors(response: Object) {
     if (!response.ok) {
         throw Error(response.statusText);
     }

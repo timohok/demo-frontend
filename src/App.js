@@ -1,4 +1,5 @@
 // @flow
+
 import React, {Component} from 'react';
 import {fetchHeroes, fetchPlayers, fetchTeams} from "./actions";
 import {Col, Grid, ListGroup, ListGroupItem, OverlayTrigger, PageHeader, Panel, Popover, Row} from 'react-bootstrap';
@@ -6,7 +7,7 @@ import {connect} from "react-redux";
 import {CircleLoader} from 'react-spinners';
 import './App.css';
 
-class App extends Component {
+class App extends Component<Props> {
 
     componentDidMount() {
         this.fetchTeams();
@@ -18,14 +19,13 @@ class App extends Component {
 
     fetchPlayers(teamId: string) {
         this.props.dispatch(fetchPlayers(teamId));
-        this.props.dispatch(fetchHeroes());
     }
 
     fetchHeroes(playerId: string) {
         this.props.dispatch(fetchHeroes(playerId));
     }
 
-    renderTeamPopover(team: Object) {
+    renderTeamPopover(team: Team) {
         return (<Popover id="popover-trigger-hover" title="Team details">
             <strong>Tag</strong>: {team.attributes.tag}<br/>
             <strong>Rating</strong>: {team.attributes.rating}<br/>
@@ -34,13 +34,13 @@ class App extends Component {
         </Popover>);
     }
 
-    renderPlayerPopover(player: Object) {
+    renderPlayerPopover(player: Player) {
         return (<Popover id="popover-trigger-hover" title="Player details">
             <strong>MMR</strong>: {player.attributes.details["solo_competitive_rank"]}<br/>
         </Popover>);
     }
 
-    renderHeroPopover(hero: Object) {
+    renderHeroPopover(hero: Hero) {
         return (<Popover id="popover-trigger-hover" title="Hero details">
             <strong>Roles</strong>: {hero.attributes.roles}<br/>
             <strong>Games</strong>: {hero.attributes.heroDetails.games}<br/>
@@ -49,11 +49,8 @@ class App extends Component {
     }
 
     render() {
-        const {error, loadingTeams, loadingPlayers, loadingHeroes, teams, players, heroes} = this.props;
+        const {loadingTeams, loadingPlayers, loadingHeroes, teams, players, heroes} = this.props;
 
-        if (error) {
-            return <div>Error! {error.message}</div>;
-        }
         return (
             [
                 <Grid>
@@ -143,24 +140,29 @@ class App extends Component {
     }
 }
 
-type Props = {
-    teams?: Array<Object>,
-    players?: Array<Object>,
-    heroes?: Array<Object>,
-    loadingTeams?: boolean,
-    loadingPlayers?: boolean,
-    loadingHeroes?: boolean,
-    error?: string
+type State = {
+    teams: Teams,
+    players: Players,
+    heroes: Heroes
 };
 
-const mapStateToProps = (state: Props) => ({
+type Props = {
+    dispatch: Function,
+    teams?: Array<Team>,
+    players?: Array<Player>,
+    heroes?: Array<Hero>,
+    loadingTeams?: boolean,
+    loadingPlayers?: boolean,
+    loadingHeroes?: boolean
+};
+
+const mapStateToProps = (state: State) => ({
     teams: state.teams.items,
     players: state.players.items,
     heroes: state.heroes.items,
     loadingTeams: state.teams.loading,
     loadingPlayers: state.players.loading,
-    loadingHeroes: state.heroes.loading,
-    error: state.teams.error
+    loadingHeroes: state.heroes.loading
 });
 
 export default connect(mapStateToProps)(App);

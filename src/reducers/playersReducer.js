@@ -1,3 +1,4 @@
+// @flow
 import {
     FETCH_PLAYERS_BEGIN,
     FETCH_PLAYERS_SUCCESS,
@@ -6,11 +7,42 @@ import {
 
 const initialState = {
     items: [],
-    loading: false,
-    error: null
+    loading: false
 };
 
-export const players = (state = initialState, action) => {
+type State = {
+    items: Array<*>,
+    loading: boolean,
+    error?: Object
+};
+
+type BeginAction = {
+    type: FETCH_PLAYERS_BEGIN,
+    payload: {
+        players?: Array<Object>,
+        error?: Object
+    }
+}
+
+type SuccessAction = {
+    type: FETCH_PLAYERS_SUCCESS,
+    payload: {
+        players?: Array<Object>,
+        error?: Object
+    }
+};
+
+type FailureAction = {
+    type: FETCH_PLAYERS_SUCCESS,
+    payload: {
+        players?: Array<Object>,
+        error?: Object
+    }
+};
+
+type Action = BeginAction | SuccessAction | FailureAction;
+
+export const players = (state: State = initialState, action: Action) => {
     switch(action.type) {
         case FETCH_PLAYERS_BEGIN:
             return {
