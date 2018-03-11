@@ -7,6 +7,16 @@ import {connect} from "react-redux";
 import {CircleLoader} from 'react-spinners';
 import './App.css';
 
+type Props = {
+    dispatch: Function,
+    teams?: Array<Team>,
+    players?: Array<Player>,
+    heroes?: Array<Hero>,
+    loadingTeams?: boolean,
+    loadingPlayers?: boolean,
+    loadingHeroes?: boolean
+};
+
 class App extends Component<Props> {
 
     componentDidMount() {
@@ -144,16 +154,6 @@ type State = {
     teams: Teams,
     players: Players,
     heroes: Heroes
-};
-
-type Props = {
-    dispatch: Function,
-    teams?: Array<Team>,
-    players?: Array<Player>,
-    heroes?: Array<Hero>,
-    loadingTeams?: boolean,
-    loadingPlayers?: boolean,
-    loadingHeroes?: boolean
 };
 
 const mapStateToProps = (state: State) => ({

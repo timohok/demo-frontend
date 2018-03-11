@@ -3,7 +3,6 @@ import {
     FETCH_HEROES_SUCCESS,
     FETCH_HEROES_FAILURE
 } from '../actions/index';
-import {FETCH_HEROES_BEGIN, FETCH_HEROES_SUCCESS} from "../actions";
 
 const initialState = {
     items: [],
