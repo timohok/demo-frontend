@@ -82,9 +82,9 @@ class App extends Component<Props> {
                                         </div>
                                     }
                                     <ListGroup>
-                                        {teams && teams.map(team =>
-                                            <ListGroupItem>
-                                                <OverlayTrigger trigger="hover" placement="right"
+                                        {teams && teams.map((team, index) =>
+                                            <ListGroupItem key={index}>
+                                                <OverlayTrigger trigger={['hover', 'focus']} placement="right"
                                                                 overlay={this.renderTeamPopover(team)}>
                                                     <a onClick={() => this.fetchPlayers(team.id)}
                                                        key={team.id}>{team.attributes.name}</a>
@@ -106,9 +106,9 @@ class App extends Component<Props> {
                                     }
                                     {!loadingPlayers &&
                                     <ListGroup>
-                                        {players && players.map(player =>
-                                            <ListGroupItem>
-                                                <OverlayTrigger trigger="hover" placement="right"
+                                        {players && players.map((player, index) =>
+                                            <ListGroupItem key={index}>
+                                                <OverlayTrigger trigger={['hover', 'focus']} placement="right"
                                                                 overlay={this.renderPlayerPopover(player)}>
                                                     <a onClick={() => this.fetchHeroes(player.id)}>{player.attributes.name}</a>
                                                 </OverlayTrigger>
@@ -130,9 +130,9 @@ class App extends Component<Props> {
                                     }
                                     {!loadingHeroes &&
                                     <ListGroup>
-                                        {heroes && heroes.map(hero =>
-                                            <ListGroupItem>
-                                                <OverlayTrigger trigger="hover" placement="right"
+                                        {heroes && heroes.map((hero, index) =>
+                                            <ListGroupItem key={index}>
+                                                <OverlayTrigger trigger={['hover', 'focus']} placement="right"
                                                                 overlay={this.renderHeroPopover(hero)}>
                                                     <a>{hero.attributes["localized_name"]}</a>
                                                 </OverlayTrigger>
