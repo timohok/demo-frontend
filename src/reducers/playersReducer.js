@@ -11,7 +11,7 @@ const initialState = {
 };
 
 type State = {
-    items: Array<*>,
+    items: Array<Player>,
     loading: boolean,
     error?: Object
 };
@@ -19,7 +19,7 @@ type State = {
 type BeginAction = {
     type: FETCH_PLAYERS_BEGIN,
     payload: {
-        players?: Array<Object>,
+        players?: Array<Player>,
         error?: Object
     }
 }
@@ -27,7 +27,7 @@ type BeginAction = {
 type SuccessAction = {
     type: FETCH_PLAYERS_SUCCESS,
     payload: {
-        players?: Array<Object>,
+        players?: Array<Player>,
         error?: Object
     }
 };
@@ -35,7 +35,7 @@ type SuccessAction = {
 type FailureAction = {
     type: FETCH_PLAYERS_SUCCESS,
     payload: {
-        players?: Array<Object>,
+        players?: Array<Player>,
         error?: Object
     }
 };

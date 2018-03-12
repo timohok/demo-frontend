@@ -10,7 +10,7 @@ const initialState = {
 };
 
 type State = {
-    items: Array<*>,
+    items: Array<Hero>,
     loading: boolean,
     error?: Object
 };
@@ -18,7 +18,7 @@ type State = {
 type BeginAction = {
     type: FETCH_HEROES_BEGIN,
     payload: {
-        heroes?: Array<Object>,
+        heroes?: Array<Hero>,
         error?: Object
     }
 }
@@ -26,7 +26,7 @@ type BeginAction = {
 type SuccessAction = {
     type: FETCH_HEROES_SUCCESS,
     payload: {
-        heroes?: Array<Object>,
+        heroes?: Array<Hero>,
         error?: Object
     }
 };
@@ -34,7 +34,7 @@ type SuccessAction = {
 type FailureAction = {
     type: FETCH_HEROES_SUCCESS,
     payload: {
-        heroes?: Array<Object>,
+        heroes?: Array<Hero>,
         error?: Object
     }
 };
