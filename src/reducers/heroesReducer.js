@@ -1,7 +1,8 @@
 import {
     FETCH_HEROES_BEGIN,
     FETCH_HEROES_SUCCESS,
-    FETCH_HEROES_FAILURE
+    FETCH_HEROES_FAILURE,
+    CLEAR_HEROES
 } from '../actions/index';
 
 const initialState = {
@@ -62,6 +63,11 @@ export const heroes = (state: State = initialState, action: Action) => {
                 ...state,
                 loading: false,
                 error: action.payload.error,
+                items: []
+            };
+        case CLEAR_HEROES:
+            return {
+                ...state,
                 items: []
             };
         default:

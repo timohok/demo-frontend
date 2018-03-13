@@ -2,6 +2,7 @@
 export const FETCH_HEROES_BEGIN   = 'FETCH_HEROES_BEGIN';
 export const FETCH_HEROES_SUCCESS = 'FETCH_HEROES_SUCCESS';
 export const FETCH_HEROES_FAILURE = 'FETCH_HEROES_FAILURE';
+export const CLEAR_HEROES = 'CLEAR_HEROES';
 
 export const fetchHeroesBegin = () => ({
     type: FETCH_HEROES_BEGIN
@@ -16,6 +17,10 @@ export const fetchHeroesFailure = (error: Object) => ({
     type: FETCH_HEROES_FAILURE,
     payload: { error }
 });
+
+export function clearHeroes() {
+    return { type: CLEAR_HEROES }
+}
 
 export function fetchHeroes(playerId: string) {
     return (dispatch: Function) => {

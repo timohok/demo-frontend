@@ -1,7 +1,7 @@
 // @flow
 
 import React, {Component} from 'react';
-import {fetchHeroes, fetchPlayers, fetchTeams} from "./actions";
+import {fetchHeroes, fetchPlayers, fetchTeams, clearHeroes} from "./actions";
 import {Col, Grid, ListGroup, ListGroupItem, OverlayTrigger, PageHeader, Panel, Popover, Row} from 'react-bootstrap';
 import {connect} from "react-redux";
 import {CircleLoader} from 'react-spinners';
@@ -29,6 +29,7 @@ class App extends Component<Props> {
 
     fetchPlayers(teamId: string) {
         this.props.dispatch(fetchPlayers(teamId));
+        this.props.dispatch(clearHeroes());
     }
 
     fetchHeroes(playerId: string) {
